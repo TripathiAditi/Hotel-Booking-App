@@ -9,7 +9,7 @@ export const register = async (req , res) =>{
         if(!name || !email || !password || !role || !confirmPassword){
             return res.status(400).json({message: "All fields are required"});
         }
-        if(password !== confirmpassword){
+        if(password !== confirmPassword){
             return res.status(400).json({message: "PASsword do not match"});
         }
 
@@ -31,7 +31,9 @@ export const register = async (req , res) =>{
         });
     }catch (error){
         console.log(error);
+        res.status(400).json({message:"Error occured"}); 
     }
+
 };
 export const login = async (req,res) =>{
     try{
@@ -84,5 +86,6 @@ export const logout =(req,res)=>{
     } catch (error){
         console.log(error);
     }
+    
 
 };
