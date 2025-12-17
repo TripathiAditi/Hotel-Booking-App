@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const roomSchema = new mongoose.Schema(
   {
@@ -29,6 +29,10 @@ const roomSchema = new mongoose.Schema(
       type: [String],
       default: []
     },
+    image_url:{
+      type: String,
+
+    },
 
     status: {
       type: String,
@@ -39,4 +43,4 @@ const roomSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Room", roomSchema);
+export const room = mongoose.model("Room", roomSchema);
