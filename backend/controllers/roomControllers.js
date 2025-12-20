@@ -32,7 +32,34 @@ export const createroom = async (req , res)=>{
         res.status(500).json({
             message: error.message
 
+            
         });
         console.log(error);
+    }
+};
+export const getRoom = async(req,res) =>{
+    try{
+        const rooms = await Room.find( {},
+            {
+            roomType: 1,
+
+            pricePerNight: 1,
+            capacity: 1,
+            amenities: 1,
+            status: 1,
+            _id: 0
+            }
+        );
+        res.status(200).json({
+            success: true,
+            count: rooms.length,
+            data: rooms
+        });
+    } catch(error){
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch rooms",
+            error: error.message
+        });
     }
 };

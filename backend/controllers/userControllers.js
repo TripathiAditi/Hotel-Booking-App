@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { User } from "../../../chat-app/backend/models/userModel.js";
+import User from "../models/usermodel.js";
 
 export const register = async (req , res) =>{
     
@@ -36,6 +36,7 @@ export const register = async (req , res) =>{
 
 };
 export const login = async (req,res) =>{
+    console.log(req.body);
     try{
         const {email, password} = req.body;
         if(!email || !password){
@@ -70,6 +71,7 @@ export const login = async (req,res) =>{
         .json({
             _id: user._id,
             usename: user.name,
+            token:token
 
         });
     }catch (error){
